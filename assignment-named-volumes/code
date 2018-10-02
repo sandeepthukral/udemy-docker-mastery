@@ -1,0 +1,120 @@
+FROM postgres:9.6.1-alpine
+
+mkdir /tmp/posgres
+
+docker volume create posgres-vol
+
+docker container run \
+          -it --rm --mount source=posgres-vol,target=/var/lib/postgresql/data \
+          postgres:9.6.1-alpine
+
+Unable to find image 'postgres:9.6.1-alpine' locally
+9.6.1-alpine: Pulling from library/postgres
+0a8490d0dfd3: Pull complete
+b6475055d17e: Pull complete
+ba55801edf3d: Pull complete
+f132014bbab8: Pull complete
+9775497ec4a5: Pull complete
+678be380896e: Pull complete
+31e4998cc9ec: Pull complete
+Digest: sha256:fa48df82694141793fb0cd52b9a93a3618ba03e5814e11dbf0dd43797f4d4cf7
+Status: Downloaded newer image for postgres:9.6.1-alpine
+The files belonging to this database system will be owned by user "postgres".
+This user must also own the server process.
+
+The database cluster will be initialized with locale "en_US.utf8".
+The default database encoding has accordingly been set to "UTF8".
+The default text search configuration will be set to "english".
+
+Data page checksums are disabled.
+
+fixing permissions on existing directory /var/lib/postgresql/data ... ok
+creating subdirectories ... ok
+selecting default max_connections ... 100
+selecting default shared_buffers ... 128MB
+selecting dynamic shared memory implementation ... posix
+creating configuration files ... ok
+running bootstrap script ... ok
+performing post-bootstrap initialization ... sh: locale: not found
+No usable system locales were found.
+Use the option "--debug" to see details.
+ok
+syncing data to disk ... ok
+
+WARNING: enabling "trust" authentication for local connections
+You can change this by editing pg_hba.conf or using the option -A, or
+--auth-local and --auth-host, the next time you run initdb.
+
+Success. You can now start the database server using:
+
+    pg_ctl -D /var/lib/postgresql/data -l logfile start
+
+****************************************************
+WARNING: No password has been set for the database.
+         This will allow anyone with access to the
+         Postgres port to access your database. In
+         Docker's default configuration, this is
+         effectively any other container on the same
+         system.
+
+         Use "-e POSTGRES_PASSWORD=password" to set
+         it in "docker run".
+****************************************************
+waiting for server to start....LOG:  could not bind IPv6 socket: Address not available
+HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+LOG:  database system was shut down at 2018-10-02 14:17:11 UTC
+LOG:  MultiXact member wraparound protections are now enabled
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+ done
+server started
+ALTER ROLE
+
+
+/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*
+
+LOG:  received fast shutdown request
+LOG:  aborting any active transactions
+LOG:  autovacuum launcher shutting down
+waiting for server to shut down....LOG:  shutting down
+LOG:  database system is shut down
+ done
+server stopped
+
+PostgreSQL init process complete; ready for start up.
+
+LOG:  database system was shut down at 2018-10-02 14:17:13 UTC
+LOG:  MultiXact member wraparound protections are now enabled
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+^CLOG:  received fast shutdown request
+LOG:  aborting any active transactions
+LOG:  autovacuum launcher shutting down
+LOG:  shutting down
+LOG:  database system is shut down
+
+docker container run \
+          -it --rm --mount source=posgres-vol,target=/var/lib/postgresql/data \
+          postgres:9.6.2-alpine
+Unable to find image 'postgres:9.6.2-alpine' locally
+9.6.2-alpine: Pulling from library/postgres
+cfc728c1c558: Pull complete
+b749e72b24f9: Pull complete
+0abdb8c9c36b: Pull complete
+90ca3848ef7e: Pull complete
+3ecf037a5034: Pull complete
+9327e3c5554c: Pull complete
+3133782bad17: Pull complete
+143bac6c8910: Pull complete
+d6da9f4bd18e: Pull complete
+Digest: sha256:f88000211e3c682e7419ac6e6cbd3a7a4980b483ac416a3b5d5ee81d4f831cc9
+Status: Downloaded newer image for postgres:9.6.2-alpine
+LOG:  database system was shut down at 2018-10-02 14:17:24 UTC
+LOG:  MultiXact member wraparound protections are now enabled
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+^CLOG:  received fast shutdown request
+LOG:  aborting any active transactions
+LOG:  autovacuum launcher shutting down
+LOG:  shutting down
+LOG:  database system is shut down
